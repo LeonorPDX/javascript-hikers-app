@@ -1,3 +1,5 @@
-const app = new AppMain
-console.log(app)
-app.getTrailheads()
+document.addEventListener("DOMContentLoaded", () => {
+    const app = new AppMain;
+    app.bindEventListeners();
+    app.getTrailheads();
+});
