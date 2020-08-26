@@ -16,7 +16,7 @@ class Hike {
     static all = []
 
     static getHikes(event) {
-        // Need to add line to clear array so we don't add duplicates on every fetch
+        Hike.all = [];
         const th_id = event.target.id;
         fetch(`http://localhost:3000/trailheads/${th_id}/hikes`)
             .then(resp => resp.json())
