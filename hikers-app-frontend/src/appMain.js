@@ -1,6 +1,5 @@
 class AppMain {
     static trailheads = []
-    static hikes = {} // Access an array of hikes by a key (trailhead ID). On create, add hike to object. No need to make another fetch if there is a key for the desired Trailhead ID already in the AppMain hikes object
     
     bindEventListeners() {
         const findHike = document.getElementById("find-hike-btn");
@@ -21,13 +20,9 @@ class AppMain {
             .catch(err => alert(err));
     }
 
-    getHikes() {
-        console.log("Get hikes button was clicked")
-    }
-
     renderTrailheads() {
         const main = document.getElementById("main");
-        main.innerHTML = "";
+        main.innerHTML = ""; // Clear all content from the 'main' section, so no duplicate data if Find Hikes is clicked multiple times
 
         const headline = document.createElement("div");
         headline.className = "content";
@@ -75,7 +70,7 @@ class AppMain {
                 button.className = "button is-primary is-medium is-light";
                 button.innerText = "View Hikes";
                 button.id = `${th.id}`;
-                button.addEventListener("click", () => {console.log("Get hikes was clicked")});
+                button.addEventListener("click", Hike.getHikes); // Need to make this function Real. Can't do 'this.getHikes' because of the scope...
 
                 rightItem.appendChild(button);
                 right.appendChild(rightItem);
