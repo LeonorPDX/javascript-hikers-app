@@ -45,9 +45,77 @@ class Hike {
         headline.appendChild(headlineText);
         main.appendChild(headline);
 
-        const hikes = Hike.all;
-        hikes.forEach(h => {
-            console.log(`${h.name}`)
+        const sortedHikes = Hike.all.sort(function(a, b) {
+            let nameA = a.name.toUpperCase();
+            let nameB = b.name.toUpperCase();
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+            return 0;
+          });
+
+          sortedHikes.forEach(h => {
+            const ancestor = document.createElement("div");
+            ancestor.className = "tile is-ancestor";
+
+            const parent = document.createElement("div");
+            parent.className = "tile is-parent";
+
+            const child = document.createElement("div");
+            child.className = "tile is-child box";
+
+            const level = document.createElement("div");
+            level.className = "level";
+
+            const left = document.createElement("div");
+            left.className = "level-left";
+
+            const leftItem = document.createElement("div");
+            leftItem.className = "level-item";
+
+            const title = document.createElement("p");
+            title.className = "title";
+            title.innerText = `${h.name}`;
+
+            leftItem.appendChild(title);
+            left.appendChild(leftItem);
+            level.appendChild(left);
+        
+            const right = document.createElement("div");
+            right.className = "level-right";
+
+            const rightItem = document.createElement("div");
+            rightItem.className = "level-item"; 
+
+            const button = document.createElement("button");
+            button.className = "button is-primary is-medium is-light";
+            button.innerText = "+";
+            button.id = `${h.id}`;
+            button.addEventListener("click", Hike.showFull); // Need to make this function Real.
+
+            rightItem.appendChild(button);
+            right.appendChild(rightItem);
+            level.appendChild(right)
+            
+            const content = document.createElement("p");
+            content.innerHTML = `<strong>Difficulty:</strong> ${h.difficulty}<br>
+                                <strong>Distance:</strong> ${h.distance}<br>
+                                <strong>Elevation Gain:</strong> ${h.elevationGain}<br>
+                                <strong>Hike Type:</strong> ${h.hikeType}`
+
+            child.appendChild(level);
+            child.appendChild(content);
+            parent.appendChild(child);
+            ancestor.appendChild(parent);
+            
+            main.appendChild(ancestor)
         })
+    }
+
+    static showFull() {
+        console.log("The plus button was clicked to show full hike info")
     }
 }
