@@ -13,11 +13,11 @@ class Hike {
         Hike.all.push(this)
     }
 
-    static all = [] // Access an array of hikes by a key (trailhead ID). On create, add hike to object. No need to make another fetch if there is a key for the desired Trailhead ID already in the AppMain hikes object
+    static all = []
 
     static getHikes(event) {
+        // Need to add line to clear array so we don't add duplicates on every fetch
         const th_id = event.target.id;
-        console.log(`Get hikes button was clicked, get hikes from trailhead id ${th_id}`)
         fetch(`http://localhost:3000/trailheads/${th_id}/hikes`)
             .then(resp => resp.json())
             .then(data => {
@@ -27,11 +27,9 @@ class Hike {
             })
             .then(Hike.renderHikes)
             .catch(err => alert(err));
-        
     }
 
     static renderHikes() {
-        console.log("Render hikes function was triggered.");
         const trailhead_id = Hike.all[0].trailheadId;
         const th = Trailhead.all.find(e => e.id === trailhead_id);
         const main = document.getElementById("main");
