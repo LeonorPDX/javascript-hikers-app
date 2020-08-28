@@ -30,8 +30,8 @@ class Hike {
     }
 
     static renderHikes() {
-        const trailhead_id = Hike.all[0].trailheadId;
-        const th = Trailhead.all.find(e => e.id === trailhead_id);
+        const trailhead_id = Hike.all[0].trailheadId; // Grab the trailhead ID from one of the hikes in the Hike.all array
+        const th = Trailhead.all.find(e => e.id === trailhead_id); // Find the trailhead object with that id
         const main = document.getElementById("main");
         main.innerHTML = ""; // Clear all content from the 'main' section, so no duplicate data if Find Hikes is clicked multiple times
 
