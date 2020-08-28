@@ -37,9 +37,39 @@
                         </div>
                     </div>    
                     
-                    <div class="form-container" style="display: none;">
-                        <p>Form Appears Here</p>
+                    <div class="container" id="form-container" style="display: none;">
+                        <div class="columns">
+                        <div class="column is-two-thirds">
 
+                        <form class="add-hike-form">
+                            <h2 class="subtitle">Add Hike</h2>
+                    
+                            <div class="field">
+                                <label class="label" style="color: rgb(238, 247, 247);">Name</label>
+                                <div class="control">
+                                  <input class="input" type="text" placeholder="Enter the hike's name..." id="new-hike-name" width="500">
+                                </div>
+                              </div>
+                            <br>
+                            <input
+                              type="text"
+                              id="new-hike-img"
+                              name="image"
+                              value=""
+                              placeholder="Enter a hike's image URL..."
+                              class="input"
+                            />
+                            <br><br>
+                            <input
+                              type="submit"
+                              name="submit"
+                              value="Create New Hike"
+                              class="button is-primary is-light"
+                            />
+                          </form>
+
+                          </div>
+                          </div>
                     </div>
                     </div>
                 </div>
