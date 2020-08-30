@@ -116,4 +116,8 @@ class Hike {
     static showFull() {
         console.log("The plus button was clicked to show full hike info")
     }
+
+    static makeConfigObj(hikeAttrArr) {
+        console.log(`Make config object function was triggered: ${hikeAttrArr}`)
+    }
 }

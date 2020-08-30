@@ -10,15 +10,36 @@ class AppMain {
             this.addHike = !this.addHike;
             if (this.addHike) {
               hikeFormContainer.style.display = "block";
+
               const select = document.getElementById("trailhead-select");
               Trailhead.all.forEach(th => {
                 const option = document.createElement("option");
                 option.value = th.id;
                 option.innerText = th.name
                 select.appendChild(option)
-              })
-              // Add event listener for the form
-              // Populate the trailhead options in the form with the Trailhead.all array        
+              });
+
+              document.querySelector('.add-hike-form').addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const hikeAttr = [];
+
+                hikeAttr.push(document.getElementById("new-hike-name").value);
+                hikeAttr.push(document.getElementById("trailhead-select").value);
+                hikeAttr.push(document.getElementById("new-hike-difficulty").value);
+                hikeAttr.push(document.getElementById("new-hike-distance").value);
+                hikeAttr.push(document.getElementById("new-hike-elevation").value);
+                hikeAttr.push(document.getElementById("new-hike-type").value);
+                hikeAttr.push(document.getElementById("new-hike-img").value);
+                hikeAttr.push(document.getElementById("new-hike-description").value);
+                
+                if (hikeAttr[0] != "") { // Only call config object method if the values are not empty so form reset doesn't trigger empty config objects
+                  Hike.makeConfigObj(hikeAttr)
+                }
+
+                document.querySelector('.add-hike-form').reset();
+                hikeFormContainer.style.display = "none"; // Have to click twice to see the form again, how to toggle appMain addHike within event? 'this' refers to submit event...
+                }, false);
             } else {
               hikeFormContainer.style.display = "none";
             }
