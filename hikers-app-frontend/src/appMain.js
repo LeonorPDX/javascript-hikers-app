@@ -6,10 +6,11 @@ class AppMain {
         const addHikeBtn = document.getElementById("add-hike-btn");
         const hikeFormContainer = document.getElementById("form-container");
         findHike.addEventListener("click", Trailhead.renderTrailheads);
-        addHikeBtn.addEventListener("click", () => {
+        addHikeBtn.addEventListener("click", () => {       
             this.addHike = !this.addHike;
             if (this.addHike) {
               hikeFormContainer.style.display = "block";
+              addHikeBtn.innerText = "Hide hike form"
 
               const select = document.getElementById("trailhead-select");
               Trailhead.all.forEach(th => {
@@ -38,10 +39,10 @@ class AppMain {
                 }
 
                 document.querySelector('.add-hike-form').reset();
-                hikeFormContainer.style.display = "none"; // Have to click twice to see the form again, how to toggle appMain addHike within event? 'this' refers to submit event...
                 }, false);
             } else {
               hikeFormContainer.style.display = "none";
+              addHikeBtn.innerText = "Add a Hike"
             }
           });
     }
