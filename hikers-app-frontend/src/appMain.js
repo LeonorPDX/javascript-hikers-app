@@ -10,6 +10,13 @@ class AppMain {
             this.addHike = !this.addHike;
             if (this.addHike) {
               hikeFormContainer.style.display = "block";
+              const select = document.getElementById("trailhead-select");
+              Trailhead.all.forEach(th => {
+                const option = document.createElement("option");
+                option.value = th.id;
+                option.innerText = th.name
+                select.appendChild(option)
+              })
               // Add event listener for the form
               // Populate the trailhead options in the form with the Trailhead.all array        
             } else {
