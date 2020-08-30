@@ -42,24 +42,71 @@
                         <div class="column is-two-thirds">
 
                         <form class="add-hike-form">
-                            <h2 class="subtitle">Add Hike</h2>
+                            <h2 class="title">Add Hike</h2>
+                            <h2 class = "subtitle">All fields are required except for Image URL</h2>
                     
                             <div class="field">
                                 <label class="label" style="color: rgb(238, 247, 247);">Name</label>
                                 <div class="control">
-                                  <input class="input" type="text" placeholder="Enter the hike's name..." id="new-hike-name" width="500">
+                                  <input class="input" type="text" placeholder="Enter the hike's name..." id="new-hike-name" required>
                                 </div>
-                              </div>
-                            <br>
-                            <input
-                              type="text"
-                              id="new-hike-img"
-                              name="image"
-                              value=""
-                              placeholder="Enter a hike's image URL..."
-                              class="input"
-                            />
-                            <br><br>
+                            </div>
+
+
+                            <div class="field">
+                                <label class="label" style="color: rgb(238, 247, 247);">Trailhead</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select>
+                                          <option>trailhead 1</option>
+                                          <option>trailhead 2</option>
+                                        </select>
+                                      </div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label" style="color: rgb(238, 247, 247);">Difficulty</label>
+                                <div class="control">
+                                  <input class="input" type="text" placeholder="Enter the hike's difficulty level..." id="new-hike-difficulty" required>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label" style="color: rgb(238, 247, 247);">Distance</label>
+                                <div class="control">
+                                  <input class="input" type="text" placeholder="Enter the hike's distance and unit of measurement..." id="new-hike-distance" required>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label" style="color: rgb(238, 247, 247);">Elevation Gain</label>
+                                <div class="control">
+                                  <input class="input" type="text" placeholder="Enter the hike's elevation gain and unit of measurement..." id="new-hike-elevation" required>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label" style="color: rgb(238, 247, 247);">Type</label>
+                                <div class="control">
+                                  <input class="input" type="text" placeholder="Enter the hike's type, e.g. loop, out and back, etc..." id="new-hike-type" required>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label" style="color: rgb(238, 247, 247);">Image URL</label>
+                                <div class="control">
+                                  <input class="input" type="text" placeholder="Optional: enter a URL for a photo..." id="new-hike-img">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label" style="color: rgb(238, 247, 247);">Description</label>
+                                <div class="control">
+                                  <textarea class="textarea" placeholder="Enter the hike's description..." id="new-hike-description" required></textarea>
+                                </div>
+                            </div>
+
                             <input
                               type="submit"
                               name="submit"
