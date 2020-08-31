@@ -103,7 +103,8 @@ class Hike {
             content.innerHTML = `<p><strong>Difficulty:</strong> ${h.difficulty}</p>
                                 <p><strong>Distance:</strong> ${h.distance}</p>
                                 <p><strong>Elevation Gain:</strong> ${h.elevationGain}</p>
-                                <p><strong>Hike Type:</strong> ${h.hikeType}</p>`
+                                <p><strong>Hike Type:</strong> ${h.hikeType}</p>
+                                <br>`
 
             child.appendChild(level);
             child.appendChild(content);
@@ -132,10 +133,13 @@ class Hike {
             longContent.appendChild(description);
 
             shortContent.appendChild(longContent);
-            console.log(`Show more infor on hike ID ${hikeId}. The plus button was clicked to show full hike info`)
         } else {
             event.target.innerText = "+"
-            console.log("The minus button was clicked to show less hike info")  
+            let hikeId = event.target.id;
+            hikeId = parseInt(hikeId, 0);
+            const shortContent = document.getElementById(`hike-${hikeId}`);
+            const longContent = shortContent.lastChild;
+            shortContent.removeChild(longContent)  //Remove last child
         }
     }
 
