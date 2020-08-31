@@ -48,6 +48,16 @@ class Trailhead {
             return 0;
           });
 
+        const select = document.getElementById("trailhead-select");
+        if (select.getElementsByTagName('option').length === 0) {
+            sortedTrailheads.forEach(th => {
+              const option = document.createElement("option");
+              option.value = th.id;
+              option.innerText = th.name
+              select.appendChild(option)
+            })
+        }
+
         sortedTrailheads.forEach(th => {
             const ancestor = document.createElement("div");
             ancestor.className = "tile is-ancestor";

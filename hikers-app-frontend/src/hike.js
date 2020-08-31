@@ -92,7 +92,7 @@ class Hike {
             button.className = "button is-primary is-medium is-light";
             button.innerText = "+";
             button.id = `${h.id}`;
-            button.addEventListener("click", Hike.showFull); // Need to make this function Real.
+            button.addEventListener("click", Hike.toggleContent); // Need to make this function Real.
 
             rightItem.appendChild(button);
             right.appendChild(rightItem);
@@ -113,7 +113,7 @@ class Hike {
         })
     }
 
-    static showFull() {
+    static toggleContent() {
         console.log("The plus button was clicked to show full hike info")
     }
 
@@ -142,6 +142,7 @@ class Hike {
         }
 
     static fetchNewHike(obj) {
+        Hike.all = []; // Clear the Hike All array so that only the new batch of hikes from the trailhead of the NEW hike are in the array
         fetch('http://localhost:3000/hikes', obj)
         .then(resp => resp.json())
         .then(data => {

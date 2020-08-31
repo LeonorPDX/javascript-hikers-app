@@ -12,16 +12,6 @@ class AppMain {
               hikeFormContainer.style.display = "block";
               addHikeBtn.innerText = "Hide Hike Form"
 
-              const select = document.getElementById("trailhead-select");
-              if (select.getElementsByTagName('option').length === 0) {
-                Trailhead.all.forEach(th => {
-                  const option = document.createElement("option");
-                  option.value = th.id;
-                  option.innerText = th.name
-                  select.appendChild(option)
-                })
-              }
-
               document.querySelector('.add-hike-form').addEventListener("submit", () => this.submitForm(event)); // 'this' is the instance of the AppMain class, and passing the event
 
             } else {
