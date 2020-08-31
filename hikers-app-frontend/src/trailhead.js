@@ -108,5 +108,9 @@ class Trailhead {
         })
     }
 
-
+    static increaseHikes() {
+        const trailhead_id = Hike.all[0].trailheadId; // Grab the trailhead ID from one of the hikes in the Hike.all array
+        const th = Trailhead.all.find(e => e.id === trailhead_id);
+        th.hikes_count = th.hikes_count + 1
+    }
 }

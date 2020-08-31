@@ -117,7 +117,40 @@ class Hike {
         console.log("The plus button was clicked to show full hike info")
     }
 
-    static makeConfigObj(hikeAttrArr) {
-        console.log(`Make config object function was triggered: ${hikeAttrArr}`)
+    static makeConfigObj(name, th_id, distance, difficulty, elevation_gain, hike_type, image_url, description) {
+        const hike = {
+            name: name,
+            trailhead_id: th_id,
+            distance: distance,
+            difficulty: difficulty,
+            elevation_gain: elevation_gain,
+            hike_type: hike_type,
+            image_url: image_url,
+            description: description
+          };
+        
+          const configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              },
+              body: JSON.stringify(hike)
+          };
+        
+          Hike.fetchNewHike(configObj)
+        }
+
+    static fetchNewHike(obj) {
+        fetch('http://localhost:3000/hikes', obj)
+        .then(resp => resp.json())
+        .then(data => {
+            data.forEach(h => {
+                new Hike(h.name, h.difficulty, h.distance, h.elevation_gain, h.hike_type, h.description, h.image_url, h.id, h.trailhead_id)
+            })
+        })
+        .then(Hike.renderHikes)
+        .then(Trailhead.increaseHikes)
+        .catch(err => alert(err));
     }
 }

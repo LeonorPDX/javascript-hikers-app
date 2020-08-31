@@ -13,12 +13,14 @@ class AppMain {
               addHikeBtn.innerText = "Hide Hike Form"
 
               const select = document.getElementById("trailhead-select");
-              Trailhead.all.forEach(th => {
-                const option = document.createElement("option");
-                option.value = th.id;
-                option.innerText = th.name
-                select.appendChild(option)
-              });
+              if (select.getElementsByTagName('option').length === 0) {
+                Trailhead.all.forEach(th => {
+                  const option = document.createElement("option");
+                  option.value = th.id;
+                  option.innerText = th.name
+                  select.appendChild(option)
+                })
+              }
 
               document.querySelector('.add-hike-form').addEventListener("submit", () => this.submitForm(event)); // 'this' is the instance of the AppMain class, and passing the event
 
@@ -44,7 +46,7 @@ class AppMain {
       hikeAttr.push(document.getElementById("new-hike-description").value);
       
       if (hikeAttr[0] != "") { // Only call config object method if the values are not empty so form reset doesn't trigger empty config objects
-        Hike.makeConfigObj(hikeAttr)
+        Hike.makeConfigObj(...hikeAttr)
       }
       document.querySelector('.add-hike-form').reset();
     }
