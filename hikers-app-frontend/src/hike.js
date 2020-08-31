@@ -98,11 +98,12 @@ class Hike {
             right.appendChild(rightItem);
             level.appendChild(right)
             
-            const content = document.createElement("p");
-            content.innerHTML = `<strong>Difficulty:</strong> ${h.difficulty}<br>
-                                <strong>Distance:</strong> ${h.distance}<br>
-                                <strong>Elevation Gain:</strong> ${h.elevationGain}<br>
-                                <strong>Hike Type:</strong> ${h.hikeType}`
+            const content = document.createElement("div");
+            content.id = `hike-${h.id}`;
+            content.innerHTML = `<p><strong>Difficulty:</strong> ${h.difficulty}</p>
+                                <p><strong>Distance:</strong> ${h.distance}</p>
+                                <p><strong>Elevation Gain:</strong> ${h.elevationGain}</p>
+                                <p><strong>Hike Type:</strong> ${h.hikeType}</p>`
 
             child.appendChild(level);
             child.appendChild(content);
@@ -116,7 +117,22 @@ class Hike {
     static toggleContent(event) {
         if (event.target.innerText === "+") {
             event.target.innerText = "-"
-            console.log("The plus button was clicked to show full hike info")
+            let hikeId = event.target.id;
+            hikeId = parseInt(hikeId, 0);
+            const shortContent = document.getElementById(`hike-${hikeId}`);
+            const longContent = document.createElement("div");
+            const hike = Hike.all.find(e => e.id === hikeId);
+            if (hike.imgUrl != "") {
+                const img = document.createElement("img");
+                img.src = hike.imgUrl;
+                longContent.appendChild(img)
+            }
+            const description = document.createElement('p');
+            description.innerText = hike.description
+            longContent.appendChild(description);
+
+            shortContent.appendChild(longContent);
+            console.log(`Show more infor on hike ID ${hikeId}. The plus button was clicked to show full hike info`)
         } else {
             event.target.innerText = "+"
             console.log("The minus button was clicked to show less hike info")  
