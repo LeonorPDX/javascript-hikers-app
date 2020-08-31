@@ -113,8 +113,14 @@ class Hike {
         })
     }
 
-    static toggleContent() {
-        console.log("The plus button was clicked to show full hike info")
+    static toggleContent(event) {
+        if (event.target.innerText === "+") {
+            event.target.innerText = "-"
+            console.log("The plus button was clicked to show full hike info")
+        } else {
+            event.target.innerText = "+"
+            console.log("The minus button was clicked to show less hike info")  
+        }
     }
 
     static makeConfigObj(name, th_id, distance, difficulty, elevation_gain, hike_type, image_url, description) {
