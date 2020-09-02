@@ -5,6 +5,8 @@ class AppMain {
         const findHike = document.getElementById("find-hike-btn");
         const addHikeBtn = document.getElementById("add-hike-btn");
         const hikeFormContainer = document.getElementById("form-container");
+        const hikeForm = document.querySelector('.add-hike-form')
+
         findHike.addEventListener("click", Trailhead.renderTrailheads);
         addHikeBtn.addEventListener("click", () => {       
             this.addHike = !this.addHike;
@@ -12,7 +14,7 @@ class AppMain {
               hikeFormContainer.style.display = "block";
               addHikeBtn.innerText = "Hide Hike Form"
 
-              document.querySelector('.add-hike-form').addEventListener("submit", () => this.submitForm(event)); // 'this' is the instance of the AppMain class, and passing the event
+              hikeForm.addEventListener("submit", () => this.submitForm(event)); // 'this' is the instance of the AppMain class, and passing the event
 
             } else {
               hikeFormContainer.style.display = "none";

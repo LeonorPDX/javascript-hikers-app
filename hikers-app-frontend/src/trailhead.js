@@ -12,18 +12,6 @@ class Trailhead {
 
     static all = []
 
-    static getTrailheads() {
-        fetch('http://localhost:3000/trailheads')
-            .then(resp => resp.json())
-            .then(data => {
-                data.forEach(th => {
-                    new Trailhead(th.name, th.location, th.amenities, th.fees, th.hikes, th.id)
-                })
-            })
-            .then(this.renderTrailheads)
-            .catch(err => alert(err));
-    }
-
     static renderTrailheads() {
         const main = document.getElementById("main");
         main.innerHTML = ""; // Clear all content from the 'main' section, so no duplicate data if Find Hikes is clicked multiple times
@@ -96,7 +84,7 @@ class Trailhead {
                 button.className = "button is-primary is-medium is-light";
                 button.innerText = "View Hikes";
                 button.id = `${th.id}`;
-                button.addEventListener("click", Hike.getHikes); // Need to make this function Real. Can't do 'this.getHikes' because of the scope...
+                button.addEventListener("click", AppAdapter.getHikes); // Need to make this function Real. Can't do 'this.getHikes' because of the scope...
 
                 rightItem.appendChild(button);
                 right.appendChild(rightItem);

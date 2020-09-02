@@ -15,20 +15,6 @@ class Hike {
 
     static all = []
 
-    static getHikes(event) {
-        Hike.all = [];
-        const th_id = event.target.id;
-        fetch(`http://localhost:3000/trailheads/${th_id}/hikes`)
-            .then(resp => resp.json())
-            .then(data => {
-                data.forEach(h => {
-                    new Hike(h.name, h.difficulty, h.distance, h.elevation_gain, h.hike_type, h.description, h.image_url, h.id, h.trailhead_id)
-                })
-            })
-            .then(Hike.renderHikes)
-            .catch(err => alert(err));
-    }
-
     static renderHikes() {
         const trailhead_id = Hike.all[0].trailheadId; // Grab the trailhead ID from one of the hikes in the Hike.all array
         const th = Trailhead.all.find(e => e.id === trailhead_id); // Find the trailhead object with that id
@@ -92,7 +78,7 @@ class Hike {
             button.className = "button is-primary is-medium is-light";
             button.innerText = "+";
             button.id = `${h.id}`;
-            button.addEventListener("click", Hike.toggleContent); // Need to make this function Real.
+            button.addEventListener("click", Hike.toggleContent);
 
             rightItem.appendChild(button);
             right.appendChild(rightItem);
@@ -136,10 +122,10 @@ class Hike {
         } else {
             event.target.innerText = "+"
             let hikeId = event.target.id;
-            hikeId = parseInt(hikeId, 0);
+            hikeId = parseInt(hikeId, 0); // Pretty sure I don't need to parse int for this section, try it out
             const shortContent = document.getElementById(`hike-${hikeId}`);
             const longContent = shortContent.lastChild;
-            shortContent.removeChild(longContent)  //Remove last child
+            shortContent.removeChild(longContent)
         }
     }
 
@@ -164,20 +150,6 @@ class Hike {
               body: JSON.stringify(hike)
           };
         
-          Hike.fetchNewHike(configObj)
+          AppAdapter.fetchNewHike(configObj)
         }
-
-    static fetchNewHike(obj) {
-        Hike.all = []; // Clear the Hike All array so that only the new batch of hikes from the trailhead of the NEW hike are in the array
-        fetch('http://localhost:3000/hikes', obj)
-        .then(resp => resp.json())
-        .then(data => {
-            data.forEach(h => {
-                new Hike(h.name, h.difficulty, h.distance, h.elevation_gain, h.hike_type, h.description, h.image_url, h.id, h.trailhead_id)
-            })
-        })
-        .then(Hike.renderHikes)
-        .then(Trailhead.increaseHikes)
-        .catch(err => alert(err));
-    }
 }
