@@ -108,7 +108,7 @@ class Hike {
             hikeId = parseInt(hikeId, 0);
             const shortContent = document.getElementById(`hike-${hikeId}`);
             const longContent = document.createElement("div");
-            const hike = Hike.all.find(e => e.id === hikeId);
+            const hike = Hike.all.find(e => e.id === hikeId);  // In event content, can't use 'this' for Hike.all
             if (hike.imgUrl != "") {
                 const img = document.createElement("img");
                 img.src = hike.imgUrl;
