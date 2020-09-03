@@ -16,10 +16,10 @@ class Hike {
     static all = []
 
     static renderHikes() {
-        const trailhead_id = Hike.all[0].trailheadId; // Grab the trailhead ID from one of the hikes in the Hike.all array
-        const th = Trailhead.all.find(e => e.id === trailhead_id); // Find the trailhead object with that id
+        const trailhead_id = this.all[0].trailheadId;
+        const th = Trailhead.all.find(e => e.id === trailhead_id);
         const main = document.getElementById("main");
-        main.innerHTML = ""; // Clear all content from the 'main' section, so no duplicate data if Find Hikes is clicked multiple times
+        main.innerHTML = "";
 
         const headline = document.createElement("div");
         headline.className = "content";
@@ -29,7 +29,7 @@ class Hike {
         headline.appendChild(headlineText);
         main.appendChild(headline);
 
-        const sortedHikes = Hike.all.sort(function(a, b) {
+        const sortedHikes = this.all.sort(function(a, b) {
             let nameA = a.name.toUpperCase();
             let nameB = b.name.toUpperCase();
             if (nameA < nameB) {
@@ -78,7 +78,7 @@ class Hike {
             button.className = "button is-primary is-medium is-light";
             button.innerText = "+";
             button.id = `${h.id}`;
-            button.addEventListener("click", Hike.toggleContent);
+            button.addEventListener("click", this.toggleContent);
 
             rightItem.appendChild(button);
             right.appendChild(rightItem);
@@ -108,7 +108,7 @@ class Hike {
             hikeId = parseInt(hikeId, 0);
             const shortContent = document.getElementById(`hike-${hikeId}`);
             const longContent = document.createElement("div");
-            const hike = Hike.all.find(e => e.id === hikeId);  // In event content, can't use 'this' for Hike.all
+            const hike = Hike.all.find(e => e.id === hikeId);
             if (hike.imgUrl != "") {
                 const img = document.createElement("img");
                 img.src = hike.imgUrl;
@@ -122,7 +122,6 @@ class Hike {
         } else {
             event.target.innerText = "+"
             let hikeId = event.target.id;
-            hikeId = parseInt(hikeId, 0); // Pretty sure I don't need to parse int for this section, try it out
             const shortContent = document.getElementById(`hike-${hikeId}`);
             const longContent = shortContent.lastChild;
             shortContent.removeChild(longContent)

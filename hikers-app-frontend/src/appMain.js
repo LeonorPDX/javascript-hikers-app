@@ -7,7 +7,7 @@ class AppMain {
         const hikeFormContainer = document.getElementById("form-container");
         const hikeForm = document.querySelector('.add-hike-form')
 
-        findHike.addEventListener("click", Trailhead.renderTrailheads);
+        findHike.addEventListener("click", Trailhead.renderTrailheads.bind(Trailhead));
         addHikeBtn.addEventListener("click", () => {       
             this.addHike = !this.addHike;
             if (this.addHike) {

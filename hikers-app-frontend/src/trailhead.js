@@ -14,7 +14,7 @@ class Trailhead {
 
     static renderTrailheads() {
         const main = document.getElementById("main");
-        main.innerHTML = ""; // Clear all content from the 'main' section, so no duplicate data if Find Hikes is clicked multiple times
+        main.innerHTML = "";
 
         const headline = document.createElement("div");
         headline.className = "content";
@@ -24,7 +24,7 @@ class Trailhead {
         headline.appendChild(headlineText);
         main.appendChild(headline);
 
-        const sortedTrailheads = Trailhead.all.sort(function(a, b) {
+        const sortedTrailheads = this.all.sort(function(a, b) {
             let nameA = a.name.toUpperCase();
             let nameB = b.name.toUpperCase();
             if (nameA < nameB) {
@@ -84,7 +84,7 @@ class Trailhead {
                 button.className = "button is-primary is-medium is-light";
                 button.innerText = "View Hikes";
                 button.id = `${th.id}`;
-                button.addEventListener("click", AppAdapter.getHikes); // Need to make this function Real. Can't do 'this.getHikes' because of the scope...
+                button.addEventListener("click", AppAdapter.getHikes);
 
                 rightItem.appendChild(button);
                 right.appendChild(rightItem);
@@ -107,8 +107,8 @@ class Trailhead {
     }
 
     static increaseHikes() {
-        const trailhead_id = Hike.all[0].trailheadId; // Grab the trailhead ID from one of the hikes in the Hike.all array
-        const th = Trailhead.all.find(e => e.id === trailhead_id);
+        const trailhead_id = Hike.all[0].trailheadId;
+        const th = this.all.find(e => e.id === trailhead_id);
         th.hikes_count = th.hikes_count + 1
     }
 }

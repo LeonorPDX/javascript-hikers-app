@@ -9,7 +9,7 @@ class AppAdapter {
                     new Trailhead(th.name, th.location, th.amenities, th.fees, th.hikes, th.id)
                 })
             })
-            .then(Trailhead.renderTrailheads)
+            .then(Trailhead.renderTrailheads.bind(Trailhead))
             .catch(err => alert(err));
     }
 
@@ -23,7 +23,7 @@ class AppAdapter {
                     new Hike(h.name, h.difficulty, h.distance, h.elevation_gain, h.hike_type, h.description, h.image_url, h.id, h.trailhead_id)
                 })
             })
-            .then(Hike.renderHikes)
+            .then(Hike.renderHikes.bind(Hike))
             .catch(err => alert(err));
     }
 
@@ -37,8 +37,8 @@ class AppAdapter {
             })
         })
         .then(alert("Hike was successfully created, see hikes below."))
-        .then(Hike.renderHikes)
-        .then(Trailhead.increaseHikes)
+        .then(Hike.renderHikes.bind(Hike))
+        .then(Trailhead.increaseHikes.bind(Trailhead))
         .catch(err => alert(err));
     }
 }
